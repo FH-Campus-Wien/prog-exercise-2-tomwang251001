@@ -6,7 +6,33 @@ public class App {
 
     //todo Task 1
     public void largestNumber(){
-        // input your solution here
+
+       Scanner scan = new Scanner(System.in);
+
+        System.out.print("Number 1: ");
+       double input = scan.nextFloat();
+
+       double max = 0;
+
+       if (input <= 0)
+           System.out.println("No number entered.");
+       else {
+           int count = 2;
+           while (count > 1) {
+               System.out.print("Number " + count + ": ");
+               input = scan.nextDouble();
+               count++;
+               if (input > max)
+               max = input;
+               if (input <= 0) {
+                   System.out.printf("'%.2'", "The largest number is " + max);
+                   break;
+               }
+
+
+           }
+       }
+           // input your solution here
     }
 
     //todo Task 2
