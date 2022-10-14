@@ -9,18 +9,16 @@ public class App {
 
        Scanner scan = new Scanner(System.in);
 
-        System.out.print("Number 1: ");
-       double input = scan.nextFloat();
-
        double max = 0;
+           int count = 1;
 
-       if (input <= 0)
-           System.out.println("No number entered.");
-       else {
-           int count = 2;
-           while (count > 1) {
+           while (count > 0) {
                System.out.print("Number " + count + ": ");
-               input = scan.nextDouble();
+               double input = scan.nextDouble();
+               if (input <= 0 & count == 1) {
+                   System.out.println("No number entered.");
+                   break;
+               }
                count++;
                if (input > max)
                max = input;
@@ -33,7 +31,7 @@ public class App {
            }
        }
            // input your solution here
-    }
+
 
     //todo Task 2
     public void stairs() {
@@ -100,6 +98,9 @@ public class App {
 
         int e = (h-1)/2;
         int i = 0;
+        int count = 1;
+        int countl = 1;
+        int minLet = 0;
 
         if (h % 2 == 0)
             System.out.println("Invalid number!");
@@ -108,13 +109,39 @@ public class App {
                 for (int space = 0; space < e; space ++) {
                     System.out.print(" ");
                 }
-                for (int let = 0; let < rows*2-1; let ++) {
-                    System.out.print((char) (c-i));
+                for (int let = 0; let < rows*2-1-minLet; let ++) {
+                        System.out.print((char) (c - i + let));
+                }
+                for (int addLet = 0; addLet < minLet; addLet ++) {
+                    System.out.print((char) (c - 1 - addLet));
                 }
                 System.out.println();
                 e --;
                 i ++;
+                count ++;
+                countl += 2;
+                minLet ++;
             }
+            int e2 = 1;
+            i -= 2;
+            countl -= 4;
+
+            for (int rows = count; rows <= h; rows ++) {
+                for (int space = 0; space < e2; space ++) {
+                    System.out.print(" ");
+                }
+                for (int let = 0; let < countl/2+1; let ++) {
+                    System.out.print((char) (c - i + let));
+                }
+                for (int addlet = 0; addlet < countl/2; addlet ++ ) {
+                    System.out.print((char) (c - 1 -addlet));
+                }
+                System.out.println();
+                e2 ++;
+                i --;
+                countl -= 2;
+            }
+
         }
         // input your solution here
     }
@@ -161,7 +188,28 @@ public class App {
 
     //todo Task 6
     public void happyNumbers(){
-        // input your solution here
+
+     Scanner scan = new Scanner(System.in);
+
+        System.out.print("n: ");
+        int n = scan.nextInt();
+
+        int sum = 0;
+        int digit;
+
+        while (n != 1 & n != 4) {
+            while (n != 0) {
+               digit = n % 10;
+               sum += Math.pow(digit, 2);
+               n = n/10;
+            }
+            n = sum;
+            sum = 0;
+        }
+        if (n == 1)
+            System.out.println("Happy number!");
+        else
+            System.out.println("Sad number!");// input your solution here
     }
 
     public static void main(String[] args){
